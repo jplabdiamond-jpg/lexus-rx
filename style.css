@@ -90,9 +90,11 @@ strong{color:var(--gold-bright);font-weight:700}
   max-width:var(--maxw);margin:0 auto;padding:10px 18px;
   display:flex;align-items:center;justify-content:space-between;gap:12px;
 }
+.logo{display:flex;align-items:center;line-height:1;margin:0}
+.logo a{display:flex;align-items:center;line-height:1}
 .logo-jp{
   font-family:"Noto Serif JP",serif;
-  font-size:2rem;font-weight:700;
+  font-size:2rem;font-weight:700;line-height:1;display:inline-block;
   background:var(--grad-shine);background-size:200% auto;
   -webkit-background-clip:text;background-clip:text;color:transparent;
   white-space:nowrap;animation:goldShimmer 4.5s linear infinite;
@@ -187,18 +189,20 @@ section{padding:78px 0;position:relative}
   list-style:none;display:grid;grid-template-columns:repeat(5,1fr);gap:16px;
 }
 .model-list a{
-  position:relative;overflow:hidden;
+  position:relative;overflow:hidden;height:100%;
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
   background:var(--surface);border:1px solid var(--line-gold);border-radius:10px;
-  padding:30px 10px;transition:border-color .25s,box-shadow .25s,transform .25s;min-height:118px;
+  padding:24px 10px;transition:border-color .25s,box-shadow .25s,transform .25s;min-height:132px;
 }
 .model-list a::before{
   content:"";position:absolute;top:0;left:-60%;width:50%;height:100%;
   background:linear-gradient(100deg,transparent,rgba(231,200,122,.18),transparent);
   transform:skewX(-18deg);transition:left .55s ease;pointer-events:none;
 }
-.model-list a:hover::before{left:120%}
-.model-list a:hover{border-color:var(--gold);box-shadow:0 10px 30px rgba(200,162,83,.28);transform:translateY(-5px)}
+@media (hover:hover){
+  .model-list a:hover::before{left:120%}
+  .model-list a:hover{border-color:var(--gold);box-shadow:0 10px 30px rgba(200,162,83,.28);transform:translateY(-5px)}
+}
 .model-name{font-family:"Cinzel",serif;font-size:1.3rem;font-weight:700;color:var(--gold-bright)}
 .model-sub{font-size:.72rem;color:var(--text-muted);letter-spacing:.08em}
 
@@ -211,16 +215,16 @@ section{padding:78px 0;position:relative}
 .trust-badge img{border-radius:50%;border:2px solid var(--gold);padding:4px;animation:ringGlow 3s ease-in-out infinite}
 .trust-text{font-size:.95rem;color:var(--text-muted)}
 .cta-video-wrap{
-  position:relative;width:100%;max-width:760px;margin:0 auto 28px;
-  padding-top:42.85%;border-radius:14px;overflow:hidden;
-  border:1px solid var(--line-gold);box-shadow:0 14px 40px rgba(0,0,0,.5);
+  position:relative;width:100%;max-width:880px;margin:0 auto 28px;
+  padding-top:56.25%;border-radius:12px;overflow:hidden;
+  box-shadow:0 14px 40px rgba(0,0,0,.5);
 }
 .cta-video-wrap .cta-video{position:absolute;inset:0;width:100%;height:100%;border:0}
 .trust-cta-wrap{text-align:center}
 .trust-cta{
   position:relative;overflow:hidden;
   display:inline-block;background:var(--grad-shine);background-size:200% auto;
-  color:#1a1305;font-weight:700;padding:16px 44px;border-radius:8px;font-size:1.05rem;
+  color:#1a1305;font-weight:700;padding:18px 46px;border-radius:8px;font-size:1.3rem;line-height:1.5;
   transition:transform .25s,box-shadow .25s;
   animation:goldShimmer 4s linear infinite,goldPulse 2.8s ease-in-out infinite;
 }
@@ -370,7 +374,7 @@ section{padding:78px 0;position:relative}
 /* ---------- Company ---------- */
 .company-table{width:100%;max-width:760px;margin:0 auto;border-collapse:collapse;font-size:.92rem}
 .company-table th,.company-table td{text-align:left;padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top}
-.company-table th{width:32%;color:var(--gold);font-weight:600;font-family:"Noto Serif JP",serif;background:rgba(200,162,83,.04)}
+.company-table th{width:32%;color:var(--gold);font-weight:600;font-family:"Noto Serif JP",serif;background:rgba(200,162,83,.04);white-space:nowrap;word-break:keep-all}
 .company-table td{color:var(--text-muted)}
 .company-table a{color:var(--gold-bright);text-decoration:underline}
 
@@ -435,17 +439,34 @@ section{padding:78px 0;position:relative}
   .model-list{grid-template-columns:repeat(3,1fr)}
 }
 @media (max-width:768px){
+  /* ヘッダーは固定しない（スクロールで流れる）。ハンバーガーのみ固定 */
+  .site-header{position:absolute;background:rgba(10,10,10,.92)}
   .header-cta{display:none}
-  .menu-toggle{display:flex}
-  .globalmenu{display:block;max-height:0;overflow:hidden;transition:max-height .35s ease;background:rgba(10,10,10,.98)}
-  .globalmenu.open{max-height:420px}
-  .globalmenu ul{flex-direction:column;gap:0}
-  .globalmenu a{padding:13px 22px;border-bottom:1px solid var(--line)}
+  .menu-toggle{
+    display:flex;position:fixed;top:14px;right:16px;z-index:120;
+    background:rgba(10,10,10,.7);border:1px solid var(--line-gold);border-radius:8px;
+    padding:9px;backdrop-filter:blur(6px);
+  }
+  /* メニューは固定ハンバーガー直下に展開 */
+  .globalmenu{
+    display:block;position:fixed;top:58px;right:16px;z-index:119;width:200px;
+    max-height:0;overflow:hidden;transition:max-height .35s ease,opacity .25s ease;opacity:0;
+    background:rgba(10,10,10,.98);border:1px solid var(--line-gold);border-radius:10px;
+  }
+  .globalmenu.open{max-height:440px;opacity:1}
+  .globalmenu ul{flex-direction:column;gap:0;border-top:0;padding:4px 0}
+  .globalmenu a{padding:12px 20px;border-bottom:1px solid var(--line)}
+  .globalmenu li:last-child a{border-bottom:0}
   .reason-list{grid-template-columns:1fr}
   .doc-grid{grid-template-columns:1fr}
   .models{background-image:url("mobile_bg_gold_pattern.png")}
   .docs{background-image:url("lexus_rx_mobile_wallpaper.png");background-attachment:fixed}
   .trust-inner{flex-direction:column;text-align:center;padding:26px 20px}
+  /* 運営会社テーブル：縦書き化を防ぎ、ラベルを横全幅で上に表示 */
+  .company-table,.company-table tbody,.company-table tr,.company-table th,.company-table td{display:block;width:100%}
+  .company-table tr{border-bottom:1px solid var(--line);padding:6px 0}
+  .company-table th{width:100%;padding:10px 14px 4px;background:transparent;white-space:normal}
+  .company-table td{padding:0 14px 12px}
   .fcta-bar{display:flex}
   .site-footer{padding-bottom:84px}
   section{padding:60px 0}
