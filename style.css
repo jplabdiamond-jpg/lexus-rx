@@ -160,7 +160,7 @@ section{padding:78px 0;position:relative}
 }
 .models::after{
   content:"";position:absolute;inset:0;z-index:0;
-  background:linear-gradient(180deg,rgba(8,8,8,.82),rgba(8,8,8,.72) 50%,rgba(8,8,8,.88));
+  background:rgba(0,0,0,.6);
   pointer-events:none;
 }
 .models .container{position:relative;z-index:1}
@@ -203,8 +203,8 @@ section{padding:78px 0;position:relative}
   .model-list a:hover::before{left:120%}
   .model-list a:hover{border-color:var(--gold);box-shadow:0 10px 30px rgba(200,162,83,.28);transform:translateY(-5px)}
 }
-.model-name{font-family:"Cinzel",serif;font-size:1.3rem;font-weight:700;color:var(--gold-bright)}
-.model-sub{font-size:.72rem;color:var(--text-muted);letter-spacing:.08em}
+.model-name{font-family:"Cinzel",serif;font-size:1.3rem;font-weight:700;color:var(--gold-bright);text-align:center}
+.model-sub{font-size:.72rem;color:var(--text-muted);letter-spacing:.08em;text-align:center}
 
 /* ---------- Trust ---------- */
 .trust-inner{
