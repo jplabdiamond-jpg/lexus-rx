@@ -443,7 +443,8 @@ section{padding:78px 0;position:relative}
   .globalmenu a{padding:13px 22px;border-bottom:1px solid var(--line)}
   .reason-list{grid-template-columns:1fr}
   .doc-grid{grid-template-columns:1fr}
-  .docs{background-attachment:scroll}
+  .models{background-image:url("mobile_bg_gold_pattern.png")}
+  .docs{background-image:url("lexus_rx_mobile_wallpaper.png");background-attachment:fixed}
   .trust-inner{flex-direction:column;text-align:center;padding:26px 20px}
   .fcta-bar{display:flex}
   .site-footer{padding-bottom:84px}
