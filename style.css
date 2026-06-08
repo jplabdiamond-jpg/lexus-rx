@@ -150,16 +150,24 @@ section{padding:78px 0;position:relative}
 .strong-buy,.trust,.company{background:var(--bg-soft)}
 .reasons,.flow,.qa{background:var(--bg)}
 
-/* グレードセクション背景（横100%・上側表示・オーバーレイなし） */
+/* グレードセクション背景（横100%・上側表示・黒オーバーレイ） */
 .models{
+  position:relative;
   background:#0a0a0a url("26977.jpg") no-repeat top center;
   background-size:cover;
 }
-/* 必要書類セクション背景（横100%・中央表示・黒オーバーレイ） */
+.models::after{
+  content:"";position:absolute;inset:0;z-index:0;
+  background:linear-gradient(180deg,rgba(8,8,8,.82),rgba(8,8,8,.72) 50%,rgba(8,8,8,.88));
+  pointer-events:none;
+}
+.models .container{position:relative;z-index:1}
+/* 必要書類セクション背景（横100%・中央表示・黒オーバーレイ・固定パララックス） */
 .docs{
   position:relative;
   background:#0a0a0a url("lexus_rx_city_drive.png") no-repeat center center;
   background-size:cover;
+  background-attachment:fixed;
 }
 .docs::after{
   content:"";position:absolute;inset:0;z-index:0;
@@ -435,6 +443,7 @@ section{padding:78px 0;position:relative}
   .globalmenu a{padding:13px 22px;border-bottom:1px solid var(--line)}
   .reason-list{grid-template-columns:1fr}
   .doc-grid{grid-template-columns:1fr}
+  .docs{background-attachment:scroll}
   .trust-inner{flex-direction:column;text-align:center;padding:26px 20px}
   .fcta-bar{display:flex}
   .site-footer{padding-bottom:84px}
