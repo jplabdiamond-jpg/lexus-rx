@@ -441,7 +441,8 @@ section{padding:78px 0;position:relative}
 }
 @media (max-width:768px){
   /* ヘッダーは固定しない（スクロールで流れる）。ハンバーガーのみ固定 */
-  .site-header{position:absolute;background:rgba(10,10,10,.92)}
+  /* backdrop-filterを解除しないと内部のfixedがヘッダー基準になり固定が効かない */
+  .site-header{position:absolute;background:rgba(10,10,10,.92);backdrop-filter:none}
   .header-cta{display:none}
   .menu-toggle{
     display:flex;position:fixed;top:14px;right:16px;z-index:120;
