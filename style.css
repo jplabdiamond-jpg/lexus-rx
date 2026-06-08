@@ -92,7 +92,7 @@ strong{color:var(--gold-bright);font-weight:700}
 }
 .logo-jp{
   font-family:"Noto Serif JP",serif;
-  font-size:1.02rem;font-weight:700;
+  font-size:2rem;font-weight:700;
   background:var(--grad-shine);background-size:200% auto;
   -webkit-background-clip:text;background-clip:text;color:transparent;
   white-space:nowrap;animation:goldShimmer 4.5s linear infinite;
@@ -147,8 +147,26 @@ strong{color:var(--gold-bright);font-weight:700}
 
 /* ---------- Sections base ---------- */
 section{padding:78px 0;position:relative}
-.strong-buy,.trust,.docs,.company{background:var(--bg-soft)}
-.models,.reasons,.flow,.qa{background:var(--bg)}
+.strong-buy,.trust,.company{background:var(--bg-soft)}
+.reasons,.flow,.qa{background:var(--bg)}
+
+/* グレードセクション背景（横100%・上側表示・オーバーレイなし） */
+.models{
+  background:#0a0a0a url("26977.jpg") no-repeat top center;
+  background-size:cover;
+}
+/* 必要書類セクション背景（横100%・中央表示・黒オーバーレイ） */
+.docs{
+  position:relative;
+  background:#0a0a0a url("lexus_rx_city_drive.png") no-repeat center center;
+  background-size:cover;
+}
+.docs::after{
+  content:"";position:absolute;inset:0;z-index:0;
+  background:linear-gradient(180deg,rgba(8,8,8,.86),rgba(8,8,8,.78) 50%,rgba(8,8,8,.9));
+  pointer-events:none;
+}
+.docs .container{position:relative;z-index:1}
 
 /* ---------- Strong buy ---------- */
 .strong-buy .st-jp{font-size:1.18rem}
@@ -355,15 +373,36 @@ section{padding:78px 0;position:relative}
 /* ---------- 追従CTAバー ---------- */
 .fcta-bar{
   position:fixed;left:0;bottom:0;width:100%;z-index:90;display:none;
-  background:rgba(10,10,10,.95);backdrop-filter:blur(8px);border-top:1px solid var(--line-gold);
+  background:#070707;backdrop-filter:blur(8px);
+  box-shadow:0 -6px 24px rgba(0,0,0,.6);
 }
-.fcta-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:9px 0;color:var(--text)}
-.fcta-icon{display:block}
-.fcta-label{font-size:.68rem}
-.fcta-tel{color:var(--gold-bright)}
-.fcta-line{color:var(--line-cta)}
-.fcta-line .fcta-label{color:var(--line-cta)}
-.fcta-mail{color:var(--gold)}
+/* 上辺で常に流れるゴールドライン */
+.fcta-bar::before{
+  content:"";position:absolute;top:0;left:0;width:100%;height:2px;
+  background:linear-gradient(90deg,#9c7c33,#e7c87a,#fff6da,#e7c87a,#c8a253,#9c7c33);
+  background-size:200% auto;animation:goldShimmer 3.5s linear infinite;
+}
+.fcta-btn{
+  position:relative;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:3px;padding:10px 0 9px;overflow:hidden;
+  background:var(--grad-shine);background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:goldShimmer 4s linear infinite;
+}
+/* ボタン間の金ディバイダー */
+.fcta-btn+.fcta-btn::before{
+  content:"";position:absolute;top:18%;left:0;height:64%;width:1px;
+  background:linear-gradient(180deg,transparent,var(--line-gold),transparent);
+}
+/* 触れた時の金グロー */
+.fcta-btn::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 120%,rgba(231,200,122,.18),transparent 70%);
+  opacity:0;transition:opacity .3s;pointer-events:none;
+}
+.fcta-btn:active::after{opacity:1}
+.fcta-icon{display:block;color:var(--gold-bright);filter:drop-shadow(0 0 4px rgba(231,200,122,.35))}
+.fcta-label{font-size:.68rem;font-weight:700}
 
 /* ---------- Reveal animation ---------- */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,.84,.44,1),transform .7s cubic-bezier(.16,.84,.44,1)}
@@ -371,7 +410,7 @@ section{padding:78px 0;position:relative}
 /* セクション間の金ディバイダー */
 .strong-buy,.models,.trust,.reasons,.flow,.docs,.qa,.company{position:relative}
 .strong-buy::before,.models::before,.trust::before,.reasons::before,.flow::before,.docs::before,.qa::before,.company::before{
-  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:2;
   width:120px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);
   opacity:.6;
 }
@@ -405,7 +444,7 @@ section{padding:78px 0;position:relative}
 @media (max-width:520px){
   .model-list{grid-template-columns:repeat(2,1fr)}
   .form-row--2col{grid-template-columns:1fr}
-  .logo-jp{font-size:.88rem}
+  .logo-jp{font-size:1.18rem}
   .inquiry-form-wrap{padding:26px 18px}
   .container{padding:0 16px}
 }
